@@ -4,7 +4,7 @@ last_modified_at: 2023-04-12T12:00:00-01:00
 categories:
   - Windows
 tags:
-  - Windows Kernel
+  - Windows Kernel Driver
 ---
 
 In this post I will detail the steps I had to get through to setup a Kernel Driver Development environment.
@@ -37,7 +37,6 @@ Basically,
 
 This bit is easy … just open your Visual Studio project go to ***Extensions -> Driver -> Test -> Configure Device***, then select ***Add Device*** and put the IP or the hostname in the ***Network Hostname***.
 
-{: .warning }
 > If you decide to put the IP instead of the hostname, make sure that the IP of the VM is static
 
 Once that’s done … the driver can be deployed on the target by clicking on ***Build -> Deploy Solution***.
@@ -48,10 +47,8 @@ For more information about setting up WinDbg, read: [windows-hardware/drivers/de
 
 The debugger I’m going to be using is ***WinDbg*** . There are a couple of ways of connecting this debugger to the target, but I’m going to be using the network one
 
-{: .note }
 > if you don’t have ***kdnet*** on the target machine, you can copy it from your local machine to the target. It’s usually under `C:\Program Files (x86)\Windows Kits\10\Debuggers\x64` . Create a folder ***C:\KDNET*** on the target and copy both ***kdnet.exe*** and ***VerifiedNICList.xml*** to there
 
-{: .warning }
 > The `<debugport >` must be between *50000-50039*
 
 On the target machine, run the following command `kdnet <yourhostip> <debugport>` . Once this command runs you should see something like the output below. Save that somewhere on your host because you are going to need this information.
